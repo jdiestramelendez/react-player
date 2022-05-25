@@ -182,6 +182,20 @@ export default class FilePlayer extends Component {
     if (this.shouldUseDASH(url)) {
       getSDK(DASH_SDK_URL.replace('VERSION', dashVersion), DASH_GLOBAL).then(dashjs => {
         this.dash = dashjs.MediaPlayer().create()
+        this.dash.setXHRWithCredentialsForType('GET', true)
+        this.dash.setXHRWithCredentialsForType('HEAD', true)
+        this.dash.setXHRWithCredentialsForType('MPD', true)
+        this.dash.setXHRWithCredentialsForType('XLinkExpansion', true)
+        this.dash.setXHRWithCredentialsForType('InitializationSegment', true)
+        this.dash.setXHRWithCredentialsForType('IndexSegment', true)
+        this.dash.setXHRWithCredentialsForType('MediaSegment', true)
+        this.dash.setXHRWithCredentialsForType('BitstreamSwitchingSegment', true)
+        this.dash.setXHRWithCredentialsForType('FragmentInfoSegment', true)
+        this.dash.setXHRWithCredentialsForType('MediaSegment', true)
+        this.dash.setXHRWithCredentialsForType('DVBReporting', true)
+        this.dash.setXHRWithCredentialsForType('license', true)
+        this.dash.setXHRWithCredentialsForType('other', true)
+        
         this.dash.initialize(this.player, url, this.props.playing)
         this.dash.on('error', this.props.onError)
         if (parseInt(dashVersion) < 3) {
