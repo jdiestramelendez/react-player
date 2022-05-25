@@ -195,7 +195,6 @@ export default class FilePlayer extends Component {
         this.dash.setXHRWithCredentialsForType('DVBReporting', true)
         this.dash.setXHRWithCredentialsForType('license', true)
         this.dash.setXHRWithCredentialsForType('other', true)
-        
         this.dash.initialize(this.player, url, this.props.playing)
         this.dash.on('error', this.props.onError)
         if (parseInt(dashVersion) < 3) {
